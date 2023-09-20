@@ -1,0 +1,111 @@
+@import 'subfooter';
+
+.footer{
+  background: #13172B;
+  color: #fff;
+  .container{
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    @media(max-width:767px){
+      text-align: center;
+    }
+    @media(min-width:768px){
+      display: flex;
+    }
+  }
+  a{
+    display: block;
+    font-weight: 400;
+    font-size: res(14, 16);
+    color: #ABADB1;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    line-height: 2;
+    &:hover{
+      color: var(--secondary-hover);
+    }
+    svg{
+      path{
+        fill: #ABADB1;
+      }
+    }
+  }
+  li.current_page_item{
+    a{
+      color: #FF9933;
+    }
+  }
+  p{
+    font-weight: 400;
+    font-size: res(14, 16);
+    color: #ABADB1;
+    line-height: 2;
+  }
+  &__box{
+    @media(max-width:767px){
+      &:not(:first-child){
+        margin-top: 30px;
+      }
+    }
+    &-smi{
+      margin-left: auto;
+      ul{
+        display: flex;
+        @media(max-width:767px){
+          align-items: center;
+          justify-content: center;
+        }
+        li{
+          &:not(:first-child){
+            margin-left: 10px;
+          }
+        }
+      }
+      a{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(#ABADB1, .3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover{
+          border-color: var(--secondary-hover);
+        }
+      }
+    }
+    &-info{
+      margin-right: 30px;
+    }
+  }
+  h4{
+    color: #FFFFFF;
+    font-size: res(16, 18);
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: res(10, 30);
+  }
+  &__phone{
+    a{
+      display: flex;
+      align-items: center;
+      @media(max-width:767px){
+        justify-content: center;
+      }
+    }
+    svg{
+      margin-right: 15px;
+    }
+  }
+  &__email{
+    @media(min-width:768px){
+      margin-top: 40px;
+    }
+    a{
+      color: var(--primary);
+    }
+  }
+}

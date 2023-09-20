@@ -1,0 +1,16 @@
+.subfooter{
+  background: #13172B;
+  color: #ABADB1;
+  padding: 15px 0;
+  .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  p{
+    font-size: res(14, 16);
+  }
+  img{
+    width: 180px;
+  }
+}

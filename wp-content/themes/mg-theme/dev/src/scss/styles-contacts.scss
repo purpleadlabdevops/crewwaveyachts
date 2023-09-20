@@ -1,0 +1,77 @@
+@import 'base/functions';
+
+.contacts{
+  padding: 50px 0;
+  background: #F4F6FA;
+  .container{
+    @media(min-width:768px){
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__left{
+    @media(min-width:768px){
+      width: 300px;
+    }
+  }
+  &__right{
+    @media(min-width:768px){
+      width: calc(100% - 300px);
+      padding-left: 8%;
+      order: 2;
+    }
+  }
+  h2{
+    font-size: res(20, 30);
+    font-weight: 400;
+    margin-bottom: 15px;
+    color: #6EC1E4;
+  }
+  h3{
+    font-size: res(16, 20);
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  p{
+    font-size: res(14, 16);
+    color: #6A7285;
+    margin-bottom: 5px;
+  }
+  &__box{
+    &:not(:first-child){
+      margin-top: 30px;
+    }
+  }
+  &__smi{
+    display: flex;
+    li{
+      &:not(:first-child){
+        margin-left: 10px;
+      }
+    }
+    a{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid rgba(#ABADB1, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover{
+        border-color: var(--secondary-hover);
+      }
+      svg{
+        width: 20px;
+        height: auto;
+      }
+    }
+  }
+  [type="submit"]{
+    max-width: 150px;
+  }
+  form{
+    padding: 0;
+    margin-top: 30px;
+    background: none;
+  }
+}
