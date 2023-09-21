@@ -1,7 +1,7 @@
 <header class="header">
   <div class="container">
     <a href="<?php echo home_url(); ?>" class="header__logo">
-      <img src="<?php echo IMG; ?>/logo.png" alt="">
+      <img src="<?php the_field('logo', 'options'); ?>" alt="<?php echo get_bloginfo('name'); ?>">
     </a>
     <?php wp_nav_menu( [ 'menu' => 'header' ] ); ?>
     <button class="goToForm">
