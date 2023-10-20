@@ -88,6 +88,7 @@ var tns=function(){Object.keys||(Object.keys=function(t){var e=[];for(var n in t
         const data = JSON.parse(result)
         console.dir(data);
         if(data.status == 'success'){
+          fbq('track', 'Lead');
           form.reset()
           document.querySelector('.step__3').classList.remove('step__active')
           document.querySelector('.step__4').classList.add('step__active')

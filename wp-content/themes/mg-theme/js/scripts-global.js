@@ -42,6 +42,13 @@ function requestAction(values, callback){
     }
   })
 
+  document.querySelector('.header__burger').addEventListener('click', e => {
+    e.preventDefault()
+    console.log(2);
+    e.target.classList.toggle('active')
+    document.querySelector('.menu-header-container').classList.toggle('active')
+  })
+
 })();
 (function(){
 
