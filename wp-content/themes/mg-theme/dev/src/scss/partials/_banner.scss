@@ -59,12 +59,18 @@
         font-weight: 500;
         display: flex;
         align-items: flex-start;
+        position: relative;
+        padding-left: 30px;
         &:not(:first-child){
           margin-top: 10px;
         }
       }
       svg{
-        margin-right: 7px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: auto;
         path{
           fill: #327BC6;
         }
