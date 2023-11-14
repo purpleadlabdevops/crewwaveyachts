@@ -39,7 +39,16 @@ function mg_admin_page_contents_candidates() {
           <td><?php echo $candidate->position; ?></td>
           <td><a href="tel:<?php echo $candidate->phone; ?>"><?php echo $candidate->phone; ?></a></td>
           <td><a href="mailto:<?php echo $candidate->email; ?>"><?php echo $candidate->email; ?></a></td>
-          <td><a download href="<?php $summary = json_decode($candidate->summary); echo $summary->url; ?>">click here to download</a></td>
+          <td>
+            <?php $files = json_decode($candidate->summary); ?>
+            <?php if(gettype($files) == "array"): ?>
+              <?php $i=0; foreach ($files as $file): $i++; ?>
+                <a download href="<?php echo $file->url; ?>">Download File <?php echo $i; ?></a> <br>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <a download href="<?php echo $files->url; ?>">Download File</a>
+            <?php endif; ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>

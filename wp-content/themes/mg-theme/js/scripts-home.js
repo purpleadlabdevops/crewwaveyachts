@@ -43,9 +43,15 @@ var tns=function(){Object.keys||(Object.keys=function(t){var e=[];for(var n in t
             /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           )
         },
-        validateFile = file => {
+        validateFile = files => {
           const maxSize = 1024 * 1024; // 1MB
-          return file.files[0].size > maxSize ? false : true
+          let result = true
+          for (let i = 0; i < files.length; i++) {
+            if(files[i].size > maxSize){
+              result = false
+            }
+          }
+          return result
         }
 
   document.querySelector('.step__two').addEventListener('click', e => {
@@ -73,17 +79,24 @@ var tns=function(){Object.keys||(Object.keys=function(t){var e=[];for(var n in t
 
   form.addEventListener('submit', e => {
     e.preventDefault();
-    console.dir(summary);
-    if(validateFile(summary)){
+    console.dir(summary.files);
+    if(validateFile(summary.files)){
       document.querySelector('.field__loader').classList.add('field__loader-active')
-      requestAction([{
+      const files = summary.files
+      const data = {
         action: 'consultAction',
         position: position.value,
         name: name.value,
         phone: phone.value,
         email: email.value,
-        summary: summary.files[0],
-      }], result => {
+        filesCount: files.length
+      }
+      for (let i = 0; i < files.length; i++) {
+        data[`file`+i] = files[i]
+      }
+      console.dir(data)
+      requestAction([data], result => {
+        console.dir(result);
         document.querySelector('.field__loader').classList.remove('field__loader-active')
         const data = JSON.parse(result)
         console.dir(data);

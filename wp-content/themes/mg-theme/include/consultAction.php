@@ -9,13 +9,17 @@ function consultAction(){
   $name = $_POST['name'];
   $phone = $_POST['phone'];
   $email = $_POST['email'];
-  $summary = $_FILES['summary'];
+  $files_count = $_POST['filesCount'];
   $overrides = [ 'test_form' => false ];
+  $files_arr = array();
 
+  for ($i = 0; $i < $files_count; $i++) {
+    $file = $_FILES['file'.$i];
+    $uploaded_file = wp_handle_upload($file, $overrides);
+    array_push($files_arr, $uploaded_file);
+  }
 
-  $upload_file = wp_handle_upload( $summary, $overrides );
-
-  if($upload_file){
+  if($files_arr){
 
     $wpdb->insert(
       'candidates',
@@ -24,7 +28,7 @@ function consultAction(){
         'name' => $name,
         'phone' => $phone,
         'email' => $email,
-        'summary' => json_encode($upload_file)
+        'summary' => json_encode($files_arr)
       ]
     );
 
@@ -33,7 +37,8 @@ function consultAction(){
     if($inserted_id){
       $msg = [
         'status' => 'success',
-        'msg' => 'Your id is '.$inserted_id
+        'msg' => 'Your id is '.$inserted_id,
+        'data' => json_encode($files_arr)
       ];
     } else {
       $msg = [
@@ -45,7 +50,8 @@ function consultAction(){
   } else {
     $msg = [
       'status' => 'error',
-      'msg' => 'Some error with file saving!'
+      'msg' => 'Some error with file saving!',
+      'data' => json_encode($files_arr)
     ];
   }
 

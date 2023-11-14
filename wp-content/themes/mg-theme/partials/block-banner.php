@@ -112,7 +112,7 @@
         <div class="step step__3">
           <div class="field">
             <label for="summary" class="field__required">Будь ласка, додайте своє резюме</label>
-            <input type="file" name="summary" id="summary" accept="application/doc, application/docx, application/pdf">
+            <input type="file" multiple name="summary" id="summary" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf">
           </div>
           <div class="field">
             <button type="submit">Надіслати</button>
