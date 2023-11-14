@@ -44,7 +44,7 @@ var tns=function(){Object.keys||(Object.keys=function(t){var e=[];for(var n in t
           )
         },
         validateFile = files => {
-          const maxSize = 1024 * 1024; // 1MB
+          const maxSize = 50000 * 1024; // 1MB
           let result = true
           for (let i = 0; i < files.length; i++) {
             if(files[i].size > maxSize){
@@ -79,7 +79,6 @@ var tns=function(){Object.keys||(Object.keys=function(t){var e=[];for(var n in t
 
   form.addEventListener('submit', e => {
     e.preventDefault();
-    console.dir(summary.files);
     if(validateFile(summary.files)){
       document.querySelector('.field__loader').classList.add('field__loader-active')
       const files = summary.files
@@ -94,12 +93,9 @@ var tns=function(){Object.keys||(Object.keys=function(t){var e=[];for(var n in t
       for (let i = 0; i < files.length; i++) {
         data[`file`+i] = files[i]
       }
-      console.dir(data)
       requestAction([data], result => {
-        console.dir(result);
         document.querySelector('.field__loader').classList.remove('field__loader-active')
         const data = JSON.parse(result)
-        console.dir(data);
         if(data.status == 'success'){
           fbq('track', 'Lead');
           form.reset()
